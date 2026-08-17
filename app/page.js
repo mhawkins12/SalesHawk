@@ -1,0 +1,444 @@
+"use client";
+
+/* ------------------------------------------------------------------
+   EDIT ME — all the content you'll want to swap in lives right here.
+------------------------------------------------------------------- */
+
+const BRAND_NAME = "The Close Room";
+
+const HERO_EYEBROW = "REMOTE SALES COMMUNITY";
+const HERO_HEADLINE_1 = "Get Paid What";
+const HERO_HEADLINE_2 = "You're Worth.";
+const HERO_SUBHEAD =
+  "Watch how our members are landing remote sales roles and building real commission income — then grab a spot on the calendar.";
+
+// Paste a YouTube or Vimeo EMBED url here (not the normal watch/share link).
+// YouTube example: https://www.youtube.com/embed/VIDEO_ID
+// Vimeo example:   https://player.vimeo.com/video/VIDEO_ID
+const VIDEO_EMBED_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+
+// Buttons that sit under the video. Add, remove, or relabel freely.
+const LINKS = [
+  { label: "Watch reviews", href: "#" },
+  { label: "Follow on Instagram", href: "#" },
+  { label: "Join the newsletter", href: "#" },
+  { label: "Read the FAQ", href: "#" },
+];
+
+// Short phrases for the scrolling ticker strip.
+const TICKER_ITEMS = [
+  "REAL REPS. REAL RESULTS.",
+  "BUILT BY CLOSERS, FOR CLOSERS.",
+  "NO FLUFF. JUST OFFERS.",
+  "YOUR NEXT ROLE IS ONE CALL AWAY.",
+  "COMMISSION-ONLY? WE'LL FIX THAT.",
+];
+
+// Your Typeform share link — anything after "https://form.typeform.com/to/"
+const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
+
+// Your Calendly (or similar) scheduling link.
+const CALENDLY_URL = "https://calendly.com/your-handle/intro-call";
+
+const FOOTER_NOTE =
+  "Results vary. Nothing on this page is a guarantee of income or employment.";
+
+/* ------------------------------------------------------------------ */
+
+export default function Page() {
+  const year = new Date().getFullYear();
+  const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
+
+  return (
+    <>
+      <header className="nav">
+        <div className="nav-inner">
+          <span className="brand">{BRAND_NAME}</span>
+          <a className="nav-cta" href="#book">
+            Book a call
+          </a>
+        </div>
+      </header>
+
+      <main>
+        {/* ---------------- HERO ---------------- */}
+        <section className="hero">
+          <div className="hero-inner">
+            <p className="eyebrow">{HERO_EYEBROW}</p>
+            <h1 className="headline">
+              {HERO_HEADLINE_1}
+              <br />
+              <span className="accent-text">{HERO_HEADLINE_2}</span>
+            </h1>
+            <p className="subhead">{HERO_SUBHEAD}</p>
+
+            <div className="video-frame">
+              <iframe
+                src={VIDEO_EMBED_URL}
+                title="Community explainer video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+
+            <div className="link-row">
+              {LINKS.map((link) => (
+                <a key={link.label} className="link-pill" href={link.href}>
+                  {link.label}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---------------- TICKER ---------------- */}
+        <div className="ticker" aria-hidden="true">
+          <div className="ticker-track">
+            {tickerLoop.map((item, i) => (
+              <span className="ticker-item" key={i}>
+                {item}
+                <span className="ticker-dot">●</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ---------------- BOOKING ---------------- */}
+        <section id="book" className="book">
+          <div className="book-inner">
+            <p className="eyebrow">READY WHEN YOU ARE</p>
+            <h2 className="book-headline">Let's see if it's a fit.</h2>
+            <p className="subhead">
+              Fill out the quick application, then lock in a time on the
+              calendar. Takes less than five minutes.
+            </p>
+
+            <div className="book-grid">
+              <div className="book-card">
+                <div className="book-card-head">
+                  <span className="step-tag">Step 1</span>
+                  <h3>Apply</h3>
+                </div>
+                <div className="embed-frame">
+                  <iframe
+                    src={TYPEFORM_URL}
+                    title="Application form"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <div className="book-card">
+                <div className="book-card-head">
+                  <span className="step-tag">Step 2</span>
+                  <h3>Book your call</h3>
+                </div>
+                <div className="embed-frame">
+                  <iframe
+                    src={CALENDLY_URL}
+                    title="Schedule a call"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="footer-inner">
+          <span className="brand small">{BRAND_NAME}</span>
+          <p>
+            © {year} {BRAND_NAME}. All rights reserved.
+          </p>
+          <p className="disclaimer">{FOOTER_NOTE}</p>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        .nav {
+          position: sticky;
+          top: 0;
+          z-index: 40;
+          backdrop-filter: blur(10px);
+          background: rgba(10, 13, 19, 0.75);
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 18px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .brand {
+          font-family: var(--font-display);
+          font-size: 24px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+        .brand.small {
+          font-size: 20px;
+        }
+        .nav-cta {
+          background: var(--accent);
+          color: #171106;
+          font-weight: 700;
+          font-size: 13px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          padding: 10px 18px;
+          border-radius: 999px;
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .nav-cta:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 20px -8px var(--accent);
+        }
+
+        .eyebrow {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin: 0 0 18px;
+        }
+
+        .hero {
+          padding: 88px 24px 64px;
+          background: radial-gradient(
+              ellipse 900px 500px at 50% -10%,
+              rgba(230, 176, 74, 0.12),
+              transparent 60%
+            ),
+            var(--bg);
+        }
+        .hero-inner {
+          max-width: 900px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .headline {
+          font-family: var(--font-display);
+          font-size: clamp(48px, 9vw, 92px);
+          line-height: 0.98;
+          letter-spacing: 0.01em;
+          text-transform: uppercase;
+          margin: 0 0 22px;
+        }
+        .accent-text {
+          color: var(--accent);
+        }
+        .subhead {
+          font-size: 18px;
+          line-height: 1.6;
+          color: var(--text-muted);
+          max-width: 560px;
+          margin: 0 auto 40px;
+        }
+
+        .video-frame {
+          position: relative;
+          width: 100%;
+          padding-top: 56.25%;
+          border-radius: var(--radius);
+          overflow: hidden;
+          background: #000;
+          border: 1px solid var(--border-strong);
+          box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7);
+        }
+        .video-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+
+        .link-row {
+          margin-top: 28px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+        }
+        .link-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 11px 20px;
+          border-radius: 999px;
+          background: var(--bg-panel-2);
+          border: 1px solid var(--border);
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text);
+          transition: border-color 0.15s ease, transform 0.15s ease,
+            color 0.15s ease;
+        }
+        .link-pill span {
+          color: var(--accent);
+          font-size: 12px;
+          transition: transform 0.15s ease;
+        }
+        .link-pill:hover {
+          border-color: var(--accent);
+          transform: translateY(-2px);
+        }
+        .link-pill:hover span {
+          transform: translate(2px, -2px);
+        }
+
+        .ticker {
+          border-top: 1px solid var(--border);
+          border-bottom: 1px solid var(--border);
+          background: var(--bg-panel);
+          overflow: hidden;
+          padding: 16px 0;
+        }
+        .ticker-track {
+          display: flex;
+          width: max-content;
+          animation: scroll-ticker 32s linear infinite;
+        }
+        .ticker-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 28px;
+          font-family: var(--font-display);
+          font-size: 20px;
+          letter-spacing: 0.06em;
+          color: var(--text-muted);
+          padding: 0 28px;
+          white-space: nowrap;
+        }
+        .ticker-dot {
+          color: var(--accent);
+          font-size: 8px;
+        }
+        @keyframes scroll-ticker {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        .book {
+          padding: 96px 24px 64px;
+        }
+        .book-inner {
+          max-width: 1000px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .book-headline {
+          font-family: var(--font-display);
+          font-size: clamp(38px, 6vw, 60px);
+          text-transform: uppercase;
+          letter-spacing: 0.01em;
+          margin: 0 0 18px;
+        }
+
+        .book-grid {
+          margin-top: 48px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          text-align: left;
+        }
+        .book-card {
+          background: var(--bg-panel);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+        }
+        .book-card-head {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+        .book-card-head h3 {
+          font-family: var(--font-display);
+          font-size: 26px;
+          letter-spacing: 0.02em;
+          text-transform: uppercase;
+          margin: 0;
+        }
+        .step-tag {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--accent);
+          background: var(--accent-soft);
+          padding: 5px 10px;
+          border-radius: 999px;
+        }
+        .embed-frame {
+          position: relative;
+          width: 100%;
+          min-height: 480px;
+          border-radius: 10px;
+          overflow: hidden;
+          background: var(--bg-panel-2);
+          border: 1px solid var(--border);
+        }
+        .embed-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+
+        .footer {
+          border-top: 1px solid var(--border);
+          padding: 40px 24px;
+        }
+        .footer-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          text-align: center;
+          color: var(--text-faint);
+        }
+        .footer-inner .brand {
+          display: block;
+          margin-bottom: 14px;
+          color: var(--text-muted);
+        }
+        .footer-inner p {
+          margin: 4px 0;
+          font-size: 13px;
+        }
+        .disclaimer {
+          max-width: 560px;
+          margin: 10px auto 0;
+          font-size: 12px;
+          line-height: 1.6;
+        }
+
+        @media (max-width: 760px) {
+          .book-grid {
+            grid-template-columns: 1fr;
+          }
+          .embed-frame {
+            min-height: 420px;
+          }
+          .hero {
+            padding-top: 64px;
+          }
+        }
+      `}</style>
+    </>
+  );
+}
