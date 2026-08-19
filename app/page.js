@@ -4,7 +4,7 @@
    EDIT ME — all the content you'll want to swap in lives right here.
 ------------------------------------------------------------------- */
 
-const BRAND_NAME = "The Close Room";
+const BRAND_NAME = "Sales Hawk";
 
 const HERO_EYEBROW = "REMOTE SALES COMMUNITY";
 const HERO_HEADLINE_1 = "Get Paid What";
@@ -15,7 +15,7 @@ const HERO_SUBHEAD =
 // Paste a YouTube or Vimeo EMBED url here (not the normal watch/share link).
 // YouTube example: https://www.youtube.com/embed/VIDEO_ID
 // Vimeo example:   https://player.vimeo.com/video/VIDEO_ID
-const VIDEO_EMBED_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+const VIDEO_EMBED_URL = "https://www.youtube.com/embed/QiEff076BQc";
 
 // Buttons that sit under the video. Add, remove, or relabel freely.
 const LINKS = [
