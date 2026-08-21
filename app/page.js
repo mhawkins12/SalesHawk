@@ -1,5 +1,9 @@
 "use client";
  
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Script from "next/script";
+ 
 /* ------------------------------------------------------------------
    EDIT ME — all the content you'll want to swap in lives right here.
 ------------------------------------------------------------------- */
@@ -37,10 +41,177 @@ const TICKER_ITEMS = [
 // Your Typeform share link — anything after "https://form.typeform.com/to/"
 const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
  
+// Your GHL calendar booking link (the src from the embed code GHL gave you).
+const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/EUTkSdWQsWfVsLGSxxDN";
+ 
 const FOOTER_NOTE =
   "Results vary. Nothing on this page is a guarantee of income or employment.";
  
 /* ------------------------------------------------------------------ */
+ 
+function BookingSection() {
+  const searchParams = useSearchParams();
+  const applied = searchParams.get("applied") === "true";
+ 
+  return (
+    <section id="book" className="book">
+      <div className="book-inner">
+        {applied ? (
+          <>
+            <p className="eyebrow">YOU'RE IN</p>
+            <h2 className="book-headline">Book your call.</h2>
+            <p className="subhead">
+              Grab a time below that works for you — we'll see you there.
+            </p>
+ 
+            <div className="book-card">
+              <div className="book-card-head">
+                <span className="step-tag">Step 2</span>
+                <h3>Pick a time</h3>
+              </div>
+              <div className="calendar-frame">
+                <iframe
+                  src={BOOKING_URL}
+                  title="Schedule a call"
+                  id="ghl-booking-iframe"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="eyebrow">READY WHEN YOU ARE</p>
+            <h2 className="book-headline">Let's see if it's a fit.</h2>
+            <p className="subhead">
+              Fill out the quick application below. If it's a fit, you'll
+              be sent straight to our calendar to lock in a time to talk.
+            </p>
+ 
+            <div className="book-card">
+              <div className="book-card-head">
+                <span className="step-tag">Step 1</span>
+                <h3>Tell us about you</h3>
+              </div>
+              <div className="embed-frame">
+                <iframe
+                  src={TYPEFORM_URL}
+                  title="Application form"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+ 
+      <style jsx>{`
+        .book {
+          padding: 96px 24px 64px;
+        }
+        .book-inner {
+          max-width: 640px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .eyebrow {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin: 0 0 18px;
+        }
+        .book-headline {
+          font-family: var(--font-display);
+          font-size: clamp(38px, 6vw, 60px);
+          text-transform: uppercase;
+          letter-spacing: 0.01em;
+          margin: 0 0 18px;
+        }
+        .subhead {
+          font-size: 18px;
+          line-height: 1.6;
+          color: var(--text-muted);
+          max-width: 560px;
+          margin: 0 auto 40px;
+        }
+        .book-card {
+          margin-top: 48px;
+          text-align: left;
+          background: var(--bg-panel);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+        }
+        .book-card-head {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+        .book-card-head h3 {
+          font-family: var(--font-display);
+          font-size: 26px;
+          letter-spacing: 0.02em;
+          text-transform: uppercase;
+          margin: 0;
+        }
+        .step-tag {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--accent);
+          background: var(--accent-soft);
+          padding: 5px 10px;
+          border-radius: 999px;
+        }
+        .embed-frame {
+          position: relative;
+          width: 100%;
+          min-height: 480px;
+          border-radius: 10px;
+          overflow: hidden;
+          background: var(--bg-panel-2);
+          border: 1px solid var(--border);
+        }
+        .embed-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+        .calendar-frame {
+          width: 100%;
+          min-height: 820px;
+          border-radius: 10px;
+          overflow: hidden;
+          background: var(--bg-panel-2);
+          border: 1px solid var(--border);
+        }
+        .calendar-frame iframe {
+          display: block;
+          width: 100%;
+          height: 820px;
+          border: 0;
+        }
+        @media (max-width: 760px) {
+          .embed-frame {
+            min-height: 420px;
+          }
+          .calendar-frame,
+          .calendar-frame iframe {
+            min-height: 900px;
+            height: 900px;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
  
 export default function Page() {
   const year = new Date().getFullYear();
@@ -48,6 +219,13 @@ export default function Page() {
  
   return (
     <>
+      {/* Lets GHL's booking widget report its real height so it doesn't
+          get cut off inside the iframe. */}
+      <Script
+        src="https://link.msgsndr.com/js/form_embed.js"
+        strategy="afterInteractive"
+      />
+ 
       <header className="nav">
         <div className="nav-inner">
           <span className="brand">{BRAND_NAME}</span>
@@ -102,31 +280,10 @@ export default function Page() {
           </div>
         </div>
  
-        {/* ---------------- APPLY ---------------- */}
-        <section id="book" className="book">
-          <div className="book-inner">
-            <p className="eyebrow">READY WHEN YOU ARE</p>
-            <h2 className="book-headline">Let's see if it's a fit.</h2>
-            <p className="subhead">
-              Fill out the quick application below. If it's a fit, you'll
-              be sent straight to our calendar to lock in a time to talk.
-            </p>
- 
-            <div className="book-card">
-              <div className="book-card-head">
-                <span className="step-tag">Apply</span>
-                <h3>Tell us about you</h3>
-              </div>
-              <div className="embed-frame">
-                <iframe
-                  src={TYPEFORM_URL}
-                  title="Application form"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ---------------- APPLY / BOOK (swaps based on ?applied=true) ---------------- */}
+        <Suspense fallback={null}>
+          <BookingSection />
+        </Suspense>
       </main>
  
       <footer className="footer">
@@ -311,72 +468,6 @@ export default function Page() {
           }
         }
  
-        .book {
-          padding: 96px 24px 64px;
-        }
-        .book-inner {
-          max-width: 640px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .book-headline {
-          font-family: var(--font-display);
-          font-size: clamp(38px, 6vw, 60px);
-          text-transform: uppercase;
-          letter-spacing: 0.01em;
-          margin: 0 0 18px;
-        }
- 
-        .book-card {
-          margin-top: 48px;
-          text-align: left;
-          background: var(--bg-panel);
-          border: 1px solid var(--border);
-          border-radius: var(--radius);
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-        }
-        .book-card-head {
-          display: flex;
-          align-items: baseline;
-          gap: 12px;
-          margin-bottom: 16px;
-        }
-        .book-card-head h3 {
-          font-family: var(--font-display);
-          font-size: 26px;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          margin: 0;
-        }
-        .step-tag {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--accent);
-          background: var(--accent-soft);
-          padding: 5px 10px;
-          border-radius: 999px;
-        }
-        .embed-frame {
-          position: relative;
-          width: 100%;
-          min-height: 480px;
-          border-radius: 10px;
-          overflow: hidden;
-          background: var(--bg-panel-2);
-          border: 1px solid var(--border);
-        }
-        .embed-frame iframe {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          border: 0;
-        }
- 
         .footer {
           border-top: 1px solid var(--border);
           padding: 40px 24px;
@@ -404,9 +495,6 @@ export default function Page() {
         }
  
         @media (max-width: 760px) {
-          .embed-frame {
-            min-height: 420px;
-          }
           .hero {
             padding-top: 64px;
           }
