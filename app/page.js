@@ -39,7 +39,7 @@ const TICKER_ITEMS = [
 ];
  
 // Your Typeform share link — anything after "https://form.typeform.com/to/"
-const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
+const TYPEFORM_URL = "https://form.typeform.com/to/I8Fmq6Dh";
  
 // Your GHL calendar booking link (the src from the embed code GHL gave you).
 const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/EUTkSdWQsWfVsLGSxxDN";
