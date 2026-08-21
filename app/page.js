@@ -1,3 +1,4 @@
+
 "use client";
  
 import { Suspense } from "react";
@@ -39,7 +40,7 @@ const TICKER_ITEMS = [
 ];
  
 // Your Typeform share link — anything after "https://form.typeform.com/to/"
-const TYPEFORM_URL = "https://form.typeform.com/to/I8Fmq6Dh";
+const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
  
 // Your GHL calendar booking link (the src from the embed code GHL gave you).
 const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/EUTkSdWQsWfVsLGSxxDN";
@@ -64,6 +65,10 @@ function BookingSection() {
               Grab a time below that works for you — we'll see you there.
             </p>
  
+            <Script
+              src="https://link.msgsndr.com/js/form_embed.js"
+              strategy="afterInteractive"
+            />
             <div className="book-card">
               <div className="book-card-head">
                 <span className="step-tag">Step 2</span>
@@ -219,13 +224,6 @@ export default function Page() {
  
   return (
     <>
-      {/* Lets GHL's booking widget report its real height so it doesn't
-          get cut off inside the iframe. */}
-      <Script
-        src="https://link.msgsndr.com/js/form_embed.js"
-        strategy="afterInteractive"
-      />
- 
       <header className="nav">
         <div className="nav-inner">
           <span className="brand">{BRAND_NAME}</span>
