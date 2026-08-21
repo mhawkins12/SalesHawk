@@ -1,22 +1,22 @@
 "use client";
-
+ 
 /* ------------------------------------------------------------------
    EDIT ME — all the content you'll want to swap in lives right here.
 ------------------------------------------------------------------- */
-
+ 
 const BRAND_NAME = "Sales Hawk";
-
+ 
 const HERO_EYEBROW = "REMOTE SALES COMMUNITY";
 const HERO_HEADLINE_1 = "Get Paid What";
 const HERO_HEADLINE_2 = "You're Worth.";
 const HERO_SUBHEAD =
   "Watch how our members are landing remote sales roles and building real commission income — then grab a spot on the calendar.";
-
+ 
 // Paste a YouTube or Vimeo EMBED url here (not the normal watch/share link).
 // YouTube example: https://www.youtube.com/embed/VIDEO_ID
 // Vimeo example:   https://player.vimeo.com/video/VIDEO_ID
 const VIDEO_EMBED_URL = "https://www.youtube.com/embed/QiEff076BQc";
-
+ 
 // Buttons that sit under the video. Add, remove, or relabel freely.
 const LINKS = [
   { label: "Watch reviews", href: "#" },
@@ -24,7 +24,7 @@ const LINKS = [
   { label: "Join the newsletter", href: "#" },
   { label: "Read the FAQ", href: "#" },
 ];
-
+ 
 // Short phrases for the scrolling ticker strip.
 const TICKER_ITEMS = [
   "REAL REPS. REAL RESULTS.",
@@ -33,22 +33,19 @@ const TICKER_ITEMS = [
   "YOUR NEXT ROLE IS ONE CALL AWAY.",
   "COMMISSION-ONLY? WE'LL FIX THAT.",
 ];
-
+ 
 // Your Typeform share link — anything after "https://form.typeform.com/to/"
 const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
-
-// Your Calendly (or similar) scheduling link.
-const CALENDLY_URL = "https://calendly.com/your-handle/intro-call";
-
+ 
 const FOOTER_NOTE =
   "Results vary. Nothing on this page is a guarantee of income or employment.";
-
+ 
 /* ------------------------------------------------------------------ */
-
+ 
 export default function Page() {
   const year = new Date().getFullYear();
   const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
-
+ 
   return (
     <>
       <header className="nav">
@@ -59,7 +56,7 @@ export default function Page() {
           </a>
         </div>
       </header>
-
+ 
       <main>
         {/* ---------------- HERO ---------------- */}
         <section className="hero">
@@ -71,7 +68,7 @@ export default function Page() {
               <span className="accent-text">{HERO_HEADLINE_2}</span>
             </h1>
             <p className="subhead">{HERO_SUBHEAD}</p>
-
+ 
             <div className="video-frame">
               <iframe
                 src={VIDEO_EMBED_URL}
@@ -81,7 +78,7 @@ export default function Page() {
                 loading="lazy"
               />
             </div>
-
+ 
             <div className="link-row">
               {LINKS.map((link) => (
                 <a key={link.label} className="link-pill" href={link.href}>
@@ -92,7 +89,7 @@ export default function Page() {
             </div>
           </div>
         </section>
-
+ 
         {/* ---------------- TICKER ---------------- */}
         <div className="ticker" aria-hidden="true">
           <div className="ticker-track">
@@ -104,50 +101,34 @@ export default function Page() {
             ))}
           </div>
         </div>
-
-        {/* ---------------- BOOKING ---------------- */}
+ 
+        {/* ---------------- APPLY ---------------- */}
         <section id="book" className="book">
           <div className="book-inner">
             <p className="eyebrow">READY WHEN YOU ARE</p>
             <h2 className="book-headline">Let's see if it's a fit.</h2>
             <p className="subhead">
-              Fill out the quick application, then lock in a time on the
-              calendar. Takes less than five minutes.
+              Fill out the quick application below. If it's a fit, you'll
+              be sent straight to our calendar to lock in a time to talk.
             </p>
-
-            <div className="book-grid">
-              <div className="book-card">
-                <div className="book-card-head">
-                  <span className="step-tag">Step 1</span>
-                  <h3>Apply</h3>
-                </div>
-                <div className="embed-frame">
-                  <iframe
-                    src={TYPEFORM_URL}
-                    title="Application form"
-                    loading="lazy"
-                  />
-                </div>
+ 
+            <div className="book-card">
+              <div className="book-card-head">
+                <span className="step-tag">Apply</span>
+                <h3>Tell us about you</h3>
               </div>
-
-              <div className="book-card">
-                <div className="book-card-head">
-                  <span className="step-tag">Step 2</span>
-                  <h3>Book your call</h3>
-                </div>
-                <div className="embed-frame">
-                  <iframe
-                    src={CALENDLY_URL}
-                    title="Schedule a call"
-                    loading="lazy"
-                  />
-                </div>
+              <div className="embed-frame">
+                <iframe
+                  src={TYPEFORM_URL}
+                  title="Application form"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
         </section>
       </main>
-
+ 
       <footer className="footer">
         <div className="footer-inner">
           <span className="brand small">{BRAND_NAME}</span>
@@ -157,7 +138,7 @@ export default function Page() {
           <p className="disclaimer">{FOOTER_NOTE}</p>
         </div>
       </footer>
-
+ 
       <style jsx>{`
         .nav {
           position: sticky;
@@ -199,7 +180,7 @@ export default function Page() {
           transform: translateY(-1px);
           box-shadow: 0 8px 20px -8px var(--accent);
         }
-
+ 
         .eyebrow {
           font-size: 12px;
           font-weight: 700;
@@ -208,7 +189,7 @@ export default function Page() {
           color: var(--accent);
           margin: 0 0 18px;
         }
-
+ 
         .hero {
           padding: 88px 24px 64px;
           background: radial-gradient(
@@ -241,7 +222,7 @@ export default function Page() {
           max-width: 560px;
           margin: 0 auto 40px;
         }
-
+ 
         .video-frame {
           position: relative;
           width: 100%;
@@ -259,7 +240,7 @@ export default function Page() {
           height: 100%;
           border: 0;
         }
-
+ 
         .link-row {
           margin-top: 28px;
           display: flex;
@@ -293,7 +274,7 @@ export default function Page() {
         .link-pill:hover span {
           transform: translate(2px, -2px);
         }
-
+ 
         .ticker {
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
@@ -329,12 +310,12 @@ export default function Page() {
             transform: translateX(-50%);
           }
         }
-
+ 
         .book {
           padding: 96px 24px 64px;
         }
         .book-inner {
-          max-width: 1000px;
+          max-width: 640px;
           margin: 0 auto;
           text-align: center;
         }
@@ -345,15 +326,10 @@ export default function Page() {
           letter-spacing: 0.01em;
           margin: 0 0 18px;
         }
-
-        .book-grid {
-          margin-top: 48px;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 24px;
-          text-align: left;
-        }
+ 
         .book-card {
+          margin-top: 48px;
+          text-align: left;
           background: var(--bg-panel);
           border: 1px solid var(--border);
           border-radius: var(--radius);
@@ -400,7 +376,7 @@ export default function Page() {
           height: 100%;
           border: 0;
         }
-
+ 
         .footer {
           border-top: 1px solid var(--border);
           padding: 40px 24px;
@@ -426,11 +402,8 @@ export default function Page() {
           font-size: 12px;
           line-height: 1.6;
         }
-
+ 
         @media (max-width: 760px) {
-          .book-grid {
-            grid-template-columns: 1fr;
-          }
           .embed-frame {
             min-height: 420px;
           }
