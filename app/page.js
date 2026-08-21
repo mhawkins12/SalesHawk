@@ -39,8 +39,8 @@ const TICKER_ITEMS = [
   "COMMISSION-ONLY? WE'LL FIX THAT.",
 ];
  
-// Your Typeform share link — anything after "https://form.typeform.com/to/"
-const TYPEFORM_URL = "https://form.typeform.com/to/XXXXXXXX";
+// Your Typeform form ID — just the part after "https://form.typeform.com/to/"
+const TYPEFORM_ID = "I8Fmq6Dh";
  
 // Your GHL calendar booking link (the src from the embed code GHL gave you).
 const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/EUTkSdWQsWfVsLGSxxDN";
@@ -65,15 +65,15 @@ function BookingSection() {
               Grab a time below that works for you — we'll see you there.
             </p>
  
-            <Script
-              src="https://link.msgsndr.com/js/form_embed.js"
-              strategy="afterInteractive"
-            />
             <div className="book-card">
               <div className="book-card-head">
                 <span className="step-tag">Step 2</span>
                 <h3>Pick a time</h3>
               </div>
+              <Script
+                src="https://link.msgsndr.com/js/form_embed.js"
+                strategy="afterInteractive"
+              />
               <div className="calendar-frame">
                 <iframe
                   src={BOOKING_URL}
@@ -97,11 +97,15 @@ function BookingSection() {
                 <span className="step-tag">Step 1</span>
                 <h3>Tell us about you</h3>
               </div>
+              <Script
+                src="//embed.typeform.com/next/embed.js"
+                strategy="afterInteractive"
+              />
               <div className="embed-frame">
-                <iframe
-                  src={TYPEFORM_URL}
-                  title="Application form"
-                  loading="lazy"
+                <div
+                  data-tf-widget={TYPEFORM_ID}
+                  data-tf-inline-on-mobile
+                  className="tf-widget"
                 />
               </div>
             </div>
@@ -176,13 +180,13 @@ function BookingSection() {
         .embed-frame {
           position: relative;
           width: 100%;
-          min-height: 480px;
+          min-height: 520px;
           border-radius: 10px;
           overflow: hidden;
           background: var(--bg-panel-2);
           border: 1px solid var(--border);
         }
-        .embed-frame iframe {
+        .embed-frame :global(.tf-widget) {
           position: absolute;
           inset: 0;
           width: 100%;
@@ -205,7 +209,7 @@ function BookingSection() {
         }
         @media (max-width: 760px) {
           .embed-frame {
-            min-height: 420px;
+            min-height: 460px;
           }
           .calendar-frame,
           .calendar-frame iframe {
