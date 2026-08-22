@@ -1,7 +1,6 @@
-
 "use client";
  
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Script from "next/script";
  
@@ -53,6 +52,17 @@ const FOOTER_NOTE =
 function BookingSection() {
   const searchParams = useSearchParams();
   const applied = searchParams.get("applied") === "true";
+ 
+  // Jump straight to this section once it's mounted, instead of relying on
+  // the browser's #book anchor scroll (which can fire before this section
+  // exists, since it loads inside a Suspense boundary).
+  useEffect(() => {
+    if (applied) {
+      document
+        .getElementById("book")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [applied]);
  
   return (
     <section id="book" className="book">
