@@ -16,7 +16,7 @@ const body = Manrope({
 });
 
 export const metadata = {
-  title: "The Close Room | Remote Sales Community",
+  title: "Sales Hawk | Remote Sales Community",
   description:
     "Join a community of remote sales pros. Watch how it works, then book a call to get started.",
 };
