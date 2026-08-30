@@ -23,10 +23,9 @@ const VIDEO_EMBED_URL = "https://www.youtube.com/embed/QiEff076BQc";
  
 // Buttons that sit under the video. Add, remove, or relabel freely.
 const LINKS = [
-  { label: "Watch reviews", href: "#" },
-  { label: "Follow on Instagram", href: "#" },
+ { label: "Watch reviews", href: "https://www.youtube.com/watch?v=guJJKfDBcIM&list=PLFFdLaiLbPo5aRO_nZLi_bMe6xjLbpMgp" },
+  { label: "Check out my Instagram", href: "https://www.instagram.com/matthunterhawk/" },
   { label: "Join the newsletter", href: "#" },
-  { label: "Read the FAQ", href: "#" },
 ];
  
 // Short phrases for the scrolling ticker strip.
