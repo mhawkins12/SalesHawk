@@ -270,7 +270,7 @@ export default function Page() {
  
             <div className="link-row">
               {LINKS.map((link) => (
-                <a key={link.label} className="link-pill" href={link.href}>
+                <a key={link.label} className="link-pill" href={link.href} target="_blank" rel="noopener noreferrer">
                   {link.label}
                   <span aria-hidden="true">↗</span>
                 </a>
